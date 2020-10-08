@@ -2,5 +2,21 @@
 <head></head>
 <body>
   This is where my website will live.
+  <div id="covidResultsByState">
+  </div>
 </body>
+  <script>
+    function getCovidDataByState(state, days) {
+        console.log('Retrieving covid data...');
+        var daysInPast = days ? days : 7;
+        var url = 'https://localcoviddata.com/covid19/v1/cases/covidTracking?state=' + state + '&daysInPast=' + daysInPast;
+        $.get(url, function( data ) {
+            $(".covidResultsByState").html(data);
+            alert("Covid data was retrieved.");
+            return data;    // also return the data        
+        });
+    }
+    console.log('loading covidtracker code...')
+    getCovidDataByState('NC', 7);    
+  </script>
 </html>
